@@ -1,6 +1,6 @@
 ## primeReact
 
-### https://www.primefaces.org/primereact [DataTable ]
+### https://www.primefaces.org/primereact [DataTable]
 
 ---
 
