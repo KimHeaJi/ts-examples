@@ -6,19 +6,19 @@
 
 ### Create CRA TypeScript App
 
-> yarn create react-app prime-react-grid-component --template=typescript
-> yarn add -S styled-components react-router-dom dotenv
-> yarn add --save-dev @types/styled-components babel-plugin-styled-components @types/react-router-dom
-> yarn add -D gh-pages
-> yarn add primereact primeicons
+> yarn create react-app prime-react-grid-component --template=typescript <br>
+> yarn add -S styled-components react-router-dom dotenv <br>
+> yarn add --save-dev @types/styled-components babel-plugin-styled-components @types/react-router-dom <br>
+> yarn add -D gh-pages <br>
+> yarn add primereact primeicons <br>
 
 ---
 
 #### CRA Alias
 
-> yarn add @craco/craco
-> yarn add craco-alias -D
-> create craco.config.js
+> yarn add @craco/craco <br>
+> yarn add craco-alias -D <br>
+> create craco.config.js <br>
 
 ```
   const CracoAlias = require("craco-alias");
