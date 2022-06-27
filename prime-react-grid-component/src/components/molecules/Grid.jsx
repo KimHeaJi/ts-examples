@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
@@ -23,7 +21,7 @@ const columns: Array<Any> = [
   { field: "regUserNm", header: "등록자" },
 ];
 
-const Grid: FC<Props> = ({ contents, setContents }) => {
+const Grid = ({ contents, setContents }: Props) => {
   const onRowReorder = (e) => {
     setContents(e.value);
   };
@@ -38,6 +36,7 @@ const Grid: FC<Props> = ({ contents, setContents }) => {
       />
     );
   });
+
   return (
     <DataTable
       value={contents}
@@ -45,7 +44,6 @@ const Grid: FC<Props> = ({ contents, setContents }) => {
       onRowReorder={onRowReorder}
       responsiveLayout="scroll"
     >
-      <Column rowReorder style={{ width: "3em" }} />
       {dynamicColumns}
     </DataTable>
   );

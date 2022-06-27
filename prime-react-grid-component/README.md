@@ -6,8 +6,9 @@
 
 ### Create CRA TypeScript App
 
+> yarn global add create-react-app <br>
 > yarn create react-app prime-react-grid-component --template=typescript <br>
-> yarn add -S styled-components react-router-dom dotenv <br>
+> yarn add styled-components react-router-dom dotenv --save <br>
 > yarn add --save-dev @types/styled-components babel-plugin-styled-components @types/react-router-dom <br>
 > yarn add -D gh-pages <br>
 > yarn add primereact primeicons <br>
