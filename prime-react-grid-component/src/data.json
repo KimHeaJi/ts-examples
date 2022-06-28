@@ -1,9 +1,23 @@
 [
   {
     "no": 1,
-    "sj": "test",
-    "regDt": "2022-06-23",
+    "sj": "test3",
+    "regDt": "2022-06-24",
     "regUserId": "user01",
-    "regUserNm": "홍길동"
+    "regUserNm": "가나다"
+  },
+  {
+    "no": 2,
+    "sj": "test1",
+    "regDt": "2022-06-25",
+    "regUserId": "user02",
+    "regUserNm": "나다가"
+  },
+  {
+    "no": 3,
+    "sj": "test2",
+    "regDt": "2022-06-23",
+    "regUserId": "user03",
+    "regUserNm": "다나가"
   }
 ]
