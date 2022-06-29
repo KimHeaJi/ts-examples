@@ -6,7 +6,8 @@ import "primeicons/primeicons.css";
 
 import data from "./data.json";
 
-import { Grid, IColumn } from "@molecules/grid";
+import { IColumn } from "@types";
+import { Grid } from "@molecules/grid";
 
 const columns: Array<IColumn> = [
   { field: "no", header: "no", sortable: true },
@@ -15,15 +16,18 @@ const columns: Array<IColumn> = [
   { field: "regUserNm", header: "등록자", sortable: false },
 ];
 
-const App: FC = () => {
-  const [contents, setContents] = useState(data);
+export const App: FC = () => {
+  const [contents, setContents] = useState(data.contents);
 
   return (
     <div>
       <h2>PrimeReact DataTable</h2>
-      <Grid columns={columns} contents={contents} setContents={setContents} />
+      <Grid
+        columns={columns}
+        contents={contents}
+        pagination={data.pagination}
+        setContents={setContents}
+      />
     </div>
   );
 };
-
-export default App;

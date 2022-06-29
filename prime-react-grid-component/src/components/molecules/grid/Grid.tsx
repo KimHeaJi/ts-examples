@@ -3,19 +3,20 @@ import { useMemo } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
-export interface IColumn {
-  field: string; // field name
-  header: string; // column name
-  sortable: boolean; // 정렬 여부
-}
+import { IColumn, IPagination } from "@types";
+// import {
+//   PaginatorTemplate,
+//   PaginatorCurrentPageReportOptions,
+// } from "primereact/paginator";
 
-interface Props {
+type Props = {
   contents: Array<any>;
   setContents: Function;
   columns: Array<IColumn>;
-}
+  pagination: IPagination;
+};
 
-export const Grid = ({ columns, contents, setContents }: Props) => {
+export const Grid = ({ columns, contents, setContents, pagination }: Props) => {
   const onRowReorder = ({ value }: any) => {
     setContents(value);
   };
@@ -34,13 +35,45 @@ export const Grid = ({ columns, contents, setContents }: Props) => {
     });
   }, [columns]);
 
+  // const template: PaginatorTemplate = {
+  //   layout: "RowsPerPageDropdown CurrentPageReport PrevPageLink NextPageLink",
+  //   CurrentPageReport: (options): PaginatorCurrentPageReportOptions => {
+  //     return (
+  //       <span
+  //         style={{
+  //           color: "var(--text-color)",
+  //           userSelect: "none",
+  //           width: "120px",
+  //           textAlign: "center",
+  //         }}
+  //       >
+  //         {options.first} - {options.last} of {options.totalRecords}
+  //       </span>
+  //     );
+  //   },
+  //   FirstPageLink: () => {},
+  //   PrevPageLink: () => {},
+  //   PageLinks: () => {},
+  //   NextPageLink: () => {},
+  // };
+
   return (
     <DataTable
+      size="small"
       value={contents}
+      responsiveLayout="scroll"
       reorderableColumns
       onRowReorder={onRowReorder}
-      responsiveLayout="scroll"
       sortMode="multiple"
+      emptyMessage="not found"
+      onRowToggle={(e) => {}}
+      paginator
+      paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink"
+      // paginatorTemplate={template}
+      totalRecords={pagination.totalElements}
+      pageLinkSize={1}
+      rows={10} // 목록수
+      first={1}
     >
       {dynamicColumns}
     </DataTable>

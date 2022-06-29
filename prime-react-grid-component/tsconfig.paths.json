@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
+      "@pages": [
+        "pages/index.ts"
+      ],
+      "@types":[
+        "types/index.ts"
+      ],
       "@atoms/*": [
-        "./src/components/atoms/*"
+        "components/atoms/*"
       ],
       "@molecules/*": [
-        "./src/components/molecules/*"
-      ],
-      "@organisms/*": [
-        "./src/components/organisms/*"
+        "components/molecules/*"
       ]
     }
   }

@@ -22,30 +22,37 @@
 > create craco.config.js <br>
 
 ```
-  const CracoAlias = require("craco-alias");
+// craco.config.js
 
-  module.exports = {
-    plugins: [
-      {
-        plugin: CracoAlias,
-        options: {
-          source: "tsconfig",
-          tsConfigPath: "tsconfig.paths.json",
-        },
+const CracoAlias = require("craco-alias");
+
+module.exports = {
+  plugins: [
+    {
+      plugin: CracoAlias,
+      options: {
+        source: "tsconfig",
+        tsConfigPath: "tsconfig.paths.json",
       },
-    ],
-  };
+    },
+  ],
+};
 ```
 
 > create tsconfig.paths.json
 
 ```
+// tsconfig.paths.json
+
 {
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      ..
-      ..
+      // 파일
+      "@pages": ["./pages/index.ts"],
+
+      // 폴더
+      "@components/*": ["./components/*"],
     }
   }
 }
@@ -54,5 +61,32 @@
 > tsconfig.json 코드 추가
 
 ```
-  "extends": "./tsconfig.paths.json",
+// tsconfig.json
+
+{
+  "extends": "./tsconfig.paths.json", // <- extends 추가
+  "compilerOptions": {
+    ...
+    ...
+  }
+}
+```
+
+> "Can’t parse tsconfig.extend.json." 에러 발생 해결 방법<br>
+
+```
+// tsconfig.paths.json
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // 파일
+      "@pages": ["./pages/index.ts"],
+
+      // 폴더
+      "@components/*": ["./components/*"],
+    },  // <- 콤마 제거
+  },  // <- 콤마 제거
+}
 ```
