@@ -1,10 +1,10 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-import data from "./data.json";
+import api from "./dummy.json";
 
 import { IColumn } from "@types";
 import { Grid } from "@molecules/grid";
@@ -17,7 +17,14 @@ const columns: Array<IColumn> = [
 ];
 
 export const App: FC = () => {
-  const [contents, setContents] = useState(data.contents);
+  const { pagination } = api.response[0];
+
+  const [contents, setContents] = useState(api.response[0].contents);
+  const [pageNumber, setPageNumber] = useState(pagination.pageNumber);
+
+  useEffect(() => {
+    setContents(api.response[pagination.pageNumber].contents);
+  }, [pagination.pageNumber]);
 
   return (
     <div>
@@ -25,8 +32,9 @@ export const App: FC = () => {
       <Grid
         columns={columns}
         contents={contents}
-        pagination={data.pagination}
         setContents={setContents}
+        pagination={{ ...pagination, pageNumber }}
+        setPageNumber={setPageNumber}
       />
     </div>
   );

@@ -2,21 +2,27 @@ import { useMemo } from "react";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { getPaginatorTemplate } from "@atoms/grid";
 
 import { IColumn, IPagination } from "@types";
-// import {
-//   PaginatorTemplate,
-//   PaginatorCurrentPageReportOptions,
-// } from "primereact/paginator";
 
 type Props = {
   contents: Array<any>;
   setContents: Function;
   columns: Array<IColumn>;
   pagination: IPagination;
+  setPageNumber: Function;
 };
 
-export const Grid = ({ columns, contents, setContents, pagination }: Props) => {
+export const Grid = ({
+  columns,
+  contents,
+  setContents,
+  pagination,
+  setPageNumber,
+}: Props) => {
+  const paginatorTemplate = getPaginatorTemplate(setPageNumber);
+
   const onRowReorder = ({ value }: any) => {
     setContents(value);
   };
@@ -35,28 +41,6 @@ export const Grid = ({ columns, contents, setContents, pagination }: Props) => {
     });
   }, [columns]);
 
-  // const template: PaginatorTemplate = {
-  //   layout: "RowsPerPageDropdown CurrentPageReport PrevPageLink NextPageLink",
-  //   CurrentPageReport: (options): PaginatorCurrentPageReportOptions => {
-  //     return (
-  //       <span
-  //         style={{
-  //           color: "var(--text-color)",
-  //           userSelect: "none",
-  //           width: "120px",
-  //           textAlign: "center",
-  //         }}
-  //       >
-  //         {options.first} - {options.last} of {options.totalRecords}
-  //       </span>
-  //     );
-  //   },
-  //   FirstPageLink: () => {},
-  //   PrevPageLink: () => {},
-  //   PageLinks: () => {},
-  //   NextPageLink: () => {},
-  // };
-
   return (
     <DataTable
       size="small"
@@ -67,13 +51,13 @@ export const Grid = ({ columns, contents, setContents, pagination }: Props) => {
       sortMode="multiple"
       emptyMessage="not found"
       onRowToggle={(e) => {}}
+      // 페이징
       paginator
-      paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink"
-      // paginatorTemplate={template}
+      paginatorTemplate={paginatorTemplate}
       totalRecords={pagination.totalElements}
-      pageLinkSize={1}
-      rows={10} // 목록수
-      first={1}
+      // 목록수/보이는 목록 수
+      pageLinkSize={3}
+      rows={10}
     >
       {dynamicColumns}
     </DataTable>
